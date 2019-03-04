@@ -1,0 +1,13 @@
+{
+  "modelPackage" : "dk.shrit.account.model",
+  "apiPackage"   : "dk.shrit.account.rest",
+  "invokerPackage" : "dk.shrit.account.invoke",
+  "groupId" : "cdk.shrit",
+  "artifactId"  : "account",
+  "fullJavaUtil" : true,
+  "dateLibrary" : "java8",
+  "generatorName" : "spring",
+  "library" :  "spring-boot",
+  "interfaceOnly" : true,
+  "useTags" : true
+}   

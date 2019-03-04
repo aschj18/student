@@ -1,0 +1,46 @@
+{
+	"info": {
+		"_postman_id": "94a5d50c-2701-44eb-bbd9-4ec510ec7882",
+		"name": "Account test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AccountList",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Request-ID",
+						"value": "8fa27655-afdc-4483-8ef9-f92f8226940d",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/account/v1/accounts?X-Request-ID=8fa27655-afdc-4483-8ef9-f92f8226940d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"account",
+						"v1",
+						"accounts"
+					],
+					"query": [
+						{
+							"key": "X-Request-ID",
+							"value": "8fa27655-afdc-4483-8ef9-f92f8226940d"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

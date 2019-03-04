@@ -1,0 +1,63 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+          url "https://plugins.gradle.org/m2/"
+        }        
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.5.RELEASE")
+        classpath "org.openapitools:openapi-generator-gradle-plugin:3.3.4"
+   }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+bootJar {
+    baseName = 'accountservice'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
+task buildInterface(type: org.openapitools.generator.gradle.plugin.tasks.GenerateTask){
+    group 'openapi tools'
+    description 'Generate API interface'
+    configFile = "$projectDir/javaconfig.json".toString()
+    inputSpec = "$projectDir/src/main/resources/account-api.yaml".toString()
+    outputDir = "$buildDir/generated".toString()
+}
+
+// Configure compile task dependency and source
+sourceSets.main.java.srcDir "$buildDir/generated/src/main/java"
+sourceSets.main.resources.srcDir "$buildDir/generated/src/main/resources"
+compileJava.dependsOn buildInterface
+
+
+
+///
+
+dependencies {
+    compile 'io.swagger:swagger-annotations:1.5.21'
+    compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'  
+
+    compile("org.springframework.boot:spring-boot-starter-web")
+     compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("org.springframework.boot:spring-hateoas")
+    compile 'org.springframework.boot:spring-boot-starter-actuator'
+    compile("com.h2database:h2")
+     runtime 'org.springframework.boot:spring-boot-devtools'
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile("junit:junit")
+}
+
